@@ -11,10 +11,10 @@ function App() {
   const [gameState, setGameState] = useState({});
 
   Socket.instance.socket.on("connect", () => {
-    const sid = sessionStorage.getItem("sid");
+    const sid = localStorage.getItem("sid");
     setTimeout(() => {
       Socket.instance.socket.emit("Connected", sid);
-      sessionStorage.setItem("sid", Socket.instance.socket.id);
+      localStorage.setItem("sid", Socket.instance.socket.id);
       setGameState({ connected: true });
     }, 350);
   });
