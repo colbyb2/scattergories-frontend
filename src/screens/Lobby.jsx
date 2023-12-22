@@ -28,39 +28,22 @@ function Lobby() {
   const location = useLocation();
   const gameCode = new URLSearchParams(location.search).get("code");
 
-  useEffect(() => usernameListener(), []);
-
   useEffect(() => {
     if (gameState.connected && gameState.code === undefined) {
-      checkUsername();
+      pageLoaded();
     } else if (gameState.code) {
       setJoinHandler();
     }
   }, [gameState.connected]);
 
-  const checkUsername = () => {
-    Socket.instance.socket.emit("CheckUsername", gameCode);
-  };
-
-  const pageLoaded = (joined) => {
-    if (!joined) setShowUsernameModal(true);
+  const pageLoaded = () => {
+    if (!gameState.username) setShowUsernameModal(true);
     else joinLobby();
   };
 
   const joinLobby = () => {
     Socket.instance.socket.emit("JoinGame", gameCode, gameState.username);
     setJoinHandler();
-  };
-
-  const usernameListener = () => {
-    Socket.instance.socket.on("UsernameResponse", (socketId, username) => {
-      if (Socket.instance.socket.id === socketId) {
-        if (username) {
-          setGameState((prevState) => Object.assign({}, prevState, username));
-          pageLoaded(true);
-        } else pageLoaded(false);
-      }
-    });
   };
 
   const setJoinHandler = () => {
