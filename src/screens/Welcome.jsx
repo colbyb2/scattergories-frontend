@@ -45,7 +45,7 @@ function Welcome() {
   return (
     <div className="VStack" style={{ padding: 25, flex: 1 }}>
       <Typography variant="h2" style={{ marginBottom: 50 }}>
-        Scattegories
+        Scattergories
       </Typography>
       <TextField
         label="Username"

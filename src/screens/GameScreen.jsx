@@ -27,7 +27,6 @@ function GameScreen() {
     });
     Socket.instance.socket.on("GameFetched", (game) => {
       if (game.id === lobbyId) {
-        console.log(game);
         setGameState((prevState) => Object.assign({}, prevState, game));
         setRoundState(game.roundStage);
       }
