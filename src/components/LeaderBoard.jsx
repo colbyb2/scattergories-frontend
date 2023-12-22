@@ -23,8 +23,8 @@ function LeaderBoard() {
 
   const effect = async () => {
     staggerAnimation().then(() => {
-      showWinnerImage();
       if (gameState.currentRound === gameState.rounds) {
+        showWinnerImage();
       }
     });
   };
