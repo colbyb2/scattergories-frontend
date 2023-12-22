@@ -1,0 +1,17 @@
+.timer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  flex-direction: column;
+}
+
+.timer-circle {
+  border: 10px solid transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
