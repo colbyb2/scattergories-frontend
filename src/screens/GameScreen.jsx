@@ -51,6 +51,8 @@ function GameScreen() {
         setRoundState(3);
       }
     });
+    //Sends traffic to server to prevent inactivity
+    fetch(Socket.baseURL + "/health");
   };
 
   return (

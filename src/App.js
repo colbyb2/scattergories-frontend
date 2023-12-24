@@ -4,7 +4,7 @@ import Lobby from "./screens/Lobby";
 import GameScreen from "./screens/GameScreen";
 import { Routes, Route } from "react-router-dom";
 import Socket from "./logic/Socket";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GameContext from "./logic/GameContext";
 
 function App() {
@@ -15,8 +15,11 @@ function App() {
     setTimeout(() => {
       Socket.instance.socket.emit("Connected", sid);
       localStorage.setItem("sid", Socket.instance.socket.id);
-      setGameState({ connected: true });
     }, 350);
+  });
+
+  Socket.instance.socket.on("UserPacket", (game) => {
+    setGameState(Object.assign({}, { connected: true }, game));
   });
 
   return (

@@ -111,10 +111,7 @@ function Lobby() {
     return (
       <div className="VStack">
         <div>Loading</div>
-        <Modal
-          open={showUsernameModal}
-          onClose={() => setShowUsernameModal(false)}
-        >
+        <Modal open={showUsernameModal}>
           <div>
             <UsernameModal
               gameState={gameState}
