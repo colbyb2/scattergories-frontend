@@ -100,7 +100,7 @@ function CreateGameModal(props) {
   const navigate = useNavigate();
 
   const createGame = () => {
-    Socket.instance.socket.emit("CreateGame", username, rounds, 2);
+    Socket.instance.socket.emit("CreateGame", username, rounds, time);
     Socket.instance.socket.on("GameCreated", (user, game) => {
       if (user === Socket.instance.socket.id) {
         setGameState((prevState) => ({
