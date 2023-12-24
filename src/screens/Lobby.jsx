@@ -14,6 +14,7 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import GameContext from "../logic/GameContext";
 import Socket from "../logic/Socket";
+import KnightImage from "../assets/sad-knight.png";
 
 function Lobby() {
   const navigate = useNavigate();
@@ -110,7 +111,28 @@ function Lobby() {
   if (gameState.code === null || gameState.code === undefined) {
     return (
       <div className="VStack">
-        <div>Loading</div>
+        {gameState.connected ? null : (
+          <div className="VStack">
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: "bold",
+                marginTop: "20vh",
+                marginBottom: "5vh",
+              }}
+            >
+              Sorry, something went wrong.
+            </Typography>
+            <img
+              src={KnightImage}
+              alt="Knight Image"
+              style={{ height: "auto", maxWidth: "30vw", marginBottom: "20px" }}
+            />
+            <Button variant="contained" onClick={() => navigate("/")}>
+              Go Back
+            </Button>
+          </div>
+        )}
         <Modal open={showUsernameModal}>
           <div>
             <UsernameModal

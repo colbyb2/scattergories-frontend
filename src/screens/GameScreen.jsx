@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 function GameScreen() {
   const [gameState, setGameState] = useContext(GameContext);
 
-  const [roundState, setRoundState] = useState(1);
+  const [roundState, setRoundState] = useState(0);
 
   const { lobbyId } = useParams();
 
@@ -57,6 +57,11 @@ function GameScreen() {
 
   return (
     <div className="VStack" style={{ flex: 1 }}>
+      {roundState === 0 ? (
+        <Typography variant="h2" style={{ marginTop: "10vh" }}>
+          Reconnecting...
+        </Typography>
+      ) : null}
       {roundState === 1 ? (
         <RoundIntro gameState={gameState} startRound={startRound} />
       ) : null}
